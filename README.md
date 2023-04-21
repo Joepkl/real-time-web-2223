@@ -5,6 +5,9 @@ Ideas:
 - Guess cocktail ingredients based on given cocktail image.
 
 
+API:
+https://opentdb.com/
+
 
 
 
