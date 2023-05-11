@@ -43,20 +43,6 @@ io.on('connection', (socket) => {
   socket.on('message', (message, sender) => {
     io.emit('message', message, sender)
   })
-
-   // Check if all users answered
-   socket.on('answerGiven', () => {
-    io.emit('allClientsAnswered')
-
-
-    // answers++
-    // console.log(answers)
-    // if(answers === clients.length){
-    //   console.log('alle antwoorden geweest')
-    //   answers = 0
-    //   io.emit('allClientsAnswered')
-    // }
-  })
   
 
   // Correct answer by client

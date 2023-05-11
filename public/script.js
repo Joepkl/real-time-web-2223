@@ -47,10 +47,6 @@ socket.on('userAdded', (clients) => {
   }
 })
 
-// All clients answered event from server
-socket.on('allClientsAnswered', () => {
-  console.log('1 antwoord')
-})
 
 
 // User won event from server
