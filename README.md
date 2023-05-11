@@ -18,6 +18,18 @@ This is an overview of the data which is transferred between client, server and 
 <img width="800" alt="Data diagram" src="https://github.com/Joepkl/real-time-web-2223/assets/74242736/00ca10c8-97cc-4615-9d9e-1027076db59e">
 
 
+## Installing the project
+
+```
+Git clone this project
+```
+```
+Npm install
+```
+```
+Npm start
+```
+
 ## The application
 
 <img width="800" alt="The application" src="https://github.com/Joepkl/real-time-web-2223/assets/74242736/aeb28e87-e705-4333-8c47-2a5f00c8f872">
