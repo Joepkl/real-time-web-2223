@@ -10,6 +10,7 @@ const fetch = require('isomorphic-fetch');
 let clients = []
 let data
 
+ 
 
 
 async function fetchTrivia() {
