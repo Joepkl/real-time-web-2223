@@ -11,14 +11,36 @@
 </head>
 
 <body>
-
   <main>
-    <div>
-      <h2>Users</h2>
-      <ul id="users"></ul>
-    </div>
-    <section>
-      <h1>Chat</h1>
+    <!-- Users list -->
+    <section id="users-list">
+      <h3>Users</h3>
+      <ul></ul>
+    </section>
+
+    <h3 id="correct-user"></h3>
+
+    <button id="play-again-button">Play again</button>
+
+    <!-- Quiz section -->
+    <section id="trivia">
+      <h3 id="question"></h3>
+      <div>
+        <div>
+          <button class="quiz-options" ></button>
+          <button class="quiz-options"></button>
+        </div>
+        <div>
+          <button class="quiz-options"></button>
+          <button class="quiz-options"></button>
+        </div>
+      </div>
+      <button id="submit-button">Submit answer</button>
+    </section>
+
+    <!-- Chat section -->
+    <section id="chat">
+      <h2>Chat</h2>
       <ul></ul>
       <form>
         <input type="text" autocomplete="off" placeholder="Type your message here...">

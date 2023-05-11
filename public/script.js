@@ -1,120 +1,183 @@
-// let socket = io();
-
-// let messages = document.querySelector('section ul')
-// let input = document.querySelector('input')
-
-
-// // VERSTUURT message event naar server
-// document.querySelector('form').addEventListener('submit', (event) => {
-//   event.preventDefault()
-//   if (input.value) {
-//     socket.emit('message', input.value)
-//     input.value = ''
-//     // Dislay username bij message
-//     let user = document.createElement('p')
-//     user.textContent = username
-//     messages.appendChild(user)
-//   }
-// })
-
-
-// // LUISTERT naar message emit van server
-// socket.on('message', function(message) {
-//   let element = document.createElement('li')
-//   element.textContent = message
-//   messages.appendChild(element)
-//   messages.scrollTop = messages.scrollHeight
-// })
-
-
-
-// VERSTUURT username event naar server
-// const username = prompt("Please enter your username:");
-// socket.emit('username', username);
-
-
-// LUISTERT naar username event van server
-// socket.on('username', function(username){
-//   let user = document.createElement('li')
-//   user.textContent = username
-//   document.querySelector('#users').appendChild(user)
-// })
-
-
-
-
-// // Luistert naar history event en add info in history
-// socket.on('history', (history) => {
-//   history.forEach((message) => {
-//     addMessage(message)
-//   })
-// })
-
-// function addMessage(message) {
-//   messages.appendChild(Object.assign(document.createElement('li'), { textContent: message }))
-//   messages.scrollTop = messages.scrollHeight
-// }
-
-
-
-
-// Luister naar longpolling event interval
-// socket.on('event', (message) => {
-//   let textElement = document.createElement('p')
-//   textElement.textContent = message
-//   messages.appendChild(textElement)
-// })
-
-
-
-
 let socket = io()
 let messages = document.querySelector('section ul')
 let input = document.querySelector('input')
+const connected = false
+
+
+// Emit USERADDED event naar server
+const myUsername = prompt("Please enter your username:");
+let myPoints = 0
+socket.emit('userAdded', myUsername, myPoints);
 
 
 // Emit MESSAGE event naar server
 document.querySelector('form').addEventListener('submit', (event) => {
   event.preventDefault()
   if (input.value) {
-    socket.emit('message', input.value)
+    socket.emit('message', input.value, myUsername)
     input.value = ''
-    socket.emit('userWhoSends', myUsername)
   }
 })
 
-// Emit USERADDED event naar server
-const myUsername = prompt("Please enter your username:");
-socket.emit('userAdded', myUsername);
 
-
-
-
-// Luisteren naar events vanaf server
-socket.on('message', (message) => {
+// Message event from server
+socket.on('message', (message, sender) => {
   addMessage(message)
+  document.querySelector('.username:last-of-type').textContent = sender
 })
 
-socket.on('whatever', (message) => {
-  addMessage(message)
+
+// User added event from server
+socket.on('userAdded', (clients) => {
+  const users = document.querySelectorAll('#users-list li')
+  users.forEach(element => {
+    element.remove()
+  })
+
+  for(let i = 0; i < clients.length; i++){
+    userList = document.querySelector('#users-list')
+
+    let user = document.createElement('li')
+    user.textContent = clients[i][0]
+    userList.appendChild(user)
+  
+    let userPoints = document.createElement('p')
+    userPoints.textContent = clients[i][1]
+    document.querySelector('#users-list li:last-of-type').appendChild(userPoints)
+  }
 })
 
-socket.on('userAdded', (username) => {
-  addUser(username)
+// All clients answered event from server
+socket.on('allClientsAnswered', () => {
+  console.log('1 antwoord')
 })
 
-socket.on('userWhoSends', (usernameSender) => {
-  // element textcontent = username
-  document.querySelector('.username:last-of-type').textContent = usernameSender
+
+// User won event from server
+socket.on('userWon', (user) => {
+  document.querySelector('#correct-user').textContent = `${user} has won the game!`
+  document.querySelector('#trivia').style.display = 'none'
+  document.querySelector('#chat').style.display = 'none'
+
+  document.querySelector('#play-again-button').style.display = 'block'
 })
 
-socket.on('history', (history) => {
-  history.forEach((message) => {
-    addMessage(message)
+
+// Play again event from server
+socket.on('playAgain', () => {
+  myPoints = 0
+  socket.emit('userAdded', myUsername, myPoints);
+  document.querySelector('#play-again-button').style.display = 'none'
+  document.querySelector('#trivia').style.display = 'block'
+  document.querySelector('#chat').style.display = 'block'
+})
+
+
+
+
+// Trivia
+
+// Wanneer data gefetched is
+socket.on('triviaData', (data) =>{
+  console.log(data)
+  showQuestions(data)
+})
+
+
+// Wanneer client correct antwoord heeft gegeven
+socket.on('correctAnswer', (user) => {
+  let selectedAnswer =  document.querySelector('button.selected') 
+  const submitButton = document.querySelector('#submit-button')
+  submitButton.disabled = true
+  submitButton.classList.add('clicked')
+
+  document.querySelector('#correct-user').textContent = `${user} gave the correct answer!`
+
+  setTimeout(() => {
+    document.querySelector('#correct-user').textContent = ''
+    submitButton.disabled = false
+    if(selectedAnswer){
+      selectedAnswer.classList.remove('selected')
+    }
+    if(submitButton){
+      submitButton.classList.remove('clicked')
+    }
+  },3000)
+})
+
+
+const _question = document.querySelector('#question')
+const _options = document.querySelectorAll('.quiz-options')
+const submitButton = document.querySelector('#submit-button')
+
+
+
+// Display questions and answers
+function showQuestions(data){
+  let correctAnswer = data.correct_answer
+  let incorrectAnswers = data.incorrect_answers
+  let optionsList = incorrectAnswers
+  optionsList.splice(Math.floor(Math.random() * (incorrectAnswers.length + 1)), 0, correctAnswer)
+
+  _question.innerHTML = data.question
+  _options[0].innerHTML = optionsList[0]
+  _options[1].innerHTML = optionsList[1]
+  _options[2].innerHTML = optionsList[2]
+  _options[3].innerHTML = optionsList[3]
+
+  console.log('Correct is:' + correctAnswer)
+
+
+  // Checking correct answer
+  submitButton.addEventListener('click', () =>{
+  let selectedAnswer =  document.querySelector('button.selected') 
+  if(selectedAnswer){
+    submitButton.classList.add('clicked')
+    submitButton.disabled = true
+    if(selectedAnswer.textContent === HTMLDecode(correctAnswer)){
+      myPoints ++
+      socket.emit('correctAnswer', myUsername, myPoints)
+    }
+    if(myPoints === 5){
+      console.log(myUsername + ' heeft gewonnen')
+      socket.emit('userWon', myUsername)
+    }
+  }
+})
+}
+
+
+// Selecting correct answer
+_options.forEach(element => {
+  element.addEventListener('click', () =>{
+    if(document.querySelector('button.selected')){
+      const activeOption = document.querySelector('button.selected')
+      activeOption.classList.remove('selected');
+    }
+    element.classList.add('selected')
   })
 })
 
 
+// Decoding in case there are HTML elments in answer
+function HTMLDecode(textString) {
+  let doc = new DOMParser().parseFromString(textString, "text/html");
+  return doc.documentElement.textContent;
+}
+
+
+
+// Play again button
+document.querySelector('#play-again-button').addEventListener('click', () => {
+  socket.emit('playAgain')
+})
+
+
+
+
+
+
+// Sent message to chat
 function addMessage(message) {
   let element = document.createElement('li')
   let user = document.createElement('p')
@@ -125,6 +188,7 @@ function addMessage(message) {
   messages.scrollTop = messages.scrollHeight
 }
 
+// Add username to user list
 function addUser(username){
   let user = document.createElement('li')
   user.textContent = username

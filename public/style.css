@@ -1,3 +1,7 @@
+
+/* ==========================================================================
+   General styling
+   ========================================================================== */
 *{
   box-sizing: border-box;
   margin: 0;
@@ -6,82 +10,252 @@
 
 body{
   box-sizing: border-box;
+  position: relative;
   font-family: Helvetica, Arial, sans-serif;
-  overflow: hidden;
   min-height: 100vh;
   min-width: 100vw;
-  background-color: lightsteelblue;
+  background-color: #1D1F2A;
 }
   
 main{
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    min-width: 100vw;
+    padding-top: 200px;
+    width: 95vw;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-  
-section {
-    width: 20rem;
+
+h3{
+    color: white;
+}
+
+
+/* ==========================================================================
+   Username form
+   ========================================================================== */
+div#username-form{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+}
+
+#username-form section{
+    width: 200px;
+    height: 200px;
+}
+
+
+
+/* ==========================================================================
+   Chat styling
+   ========================================================================== */
+h2{
+    margin-top: 30px;
+    color: white;
+    text-align: center;
+}
+
+p.username{
+    color: #adb5bd;
+}
+
+#chat {
+    width: calc(100% - 450px);
+    max-width: 400px;
+    margin-left: 80px;
     height: 30rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: blanchedalmond;
+    background-color: #272C3A;
     border-radius: 10px;
+    position: relative;
 }
   
-section h1 {
-    font-weight: lighter;
-    text-transform: uppercase;
-    font-size: 1rem;
-    padding-top: 20px;
-}
-  
-section ul {
-    margin: 0;
-    padding: 0.2em;
+#chat ul {
     list-style-type: none;
-    flex-grow: 2;
-    width: 18em;
     overflow-y: scroll;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
 }
   
-section ul > li {
+#chat ul > li {
     padding: 0.5rem 1rem;
     font-size: 0.8rem;
     background-color: white;
     margin-top: 10px;
     border-radius: 10px;
+    width: fit-content;
+    max-width: 80%;
+    overflow-wrap: anywhere;
+    margin-bottom: 10px;
 }
+
   
-section form {
-    margin: 0 0 1rem 0;
-    padding: 0;
-    width: 18rem;
-    height: 2rem;
-    display: flex;
-}
-  
-section form input[type='text'] {
+#chat form {
     width: 100%;
-    border: 2px solid black;
 }
-
-section form > button {
-    cursor: pointer;
-    background-color: black;
+  
+#chat form input[type='text'] {
+    width: calc(100% - 40px);
+    border: 2px solid white;
+    position: absolute;
+    bottom: 0;
     padding: 5px;
-    color: white;
-    border: black solid 2px;
-    transition: .2s;
+}
+
+#chat form > button {
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40px;
+    border: 2px solid #f4a261;
+    background-color: #f4a261;
+    border-left: 0;
+    padding: 5px;
 }
 
 
 
-/* Users */
-div{
-  margin-right: 30px;
+/* ==========================================================================
+   Trivia questions styling
+   ========================================================================== */
+#trivia{
+    width: 450px;
+}
+
+#trivia h3{
+    color: white;
+    margin-bottom: 40px;
+    font-size: 1.5em;
+}
+
+#trivia > div{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#trivia > div > div{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+
+#trivia button{
+    background-color: white;
+    border: 5px solid white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+#trivia button:hover{
+    cursor: pointer;
+}
+
+#trivia button.selected{
+    border: 5px solid #f4a261;
+}
+
+#trivia #submit-button.clicked{
+    background-color: #adb5bd;
+    border: 2px solid #adb5bd;
+}
+
+#trivia #submit-button{
+    background-color: #f4a261;
+    border: 2px solid #f4a261;
+    margin-top: 30px;
+    width: fit-content;
+}
+
+#trivia #submit-button:hover{
+    cursor: pointer;
+}
+
+#trivia #submit-button.clicked:hover{
+    cursor: default;
+}
+
+
+
+#correct-user{
+    position: absolute;
+    top: 50px;
+}
+
+#play-again-button{
+    display: none;
+    cursor: pointer;
+    background-color: #f4a261;
+    border: 2px solid #f4a261;
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 130px;
+}
+
+
+
+
+
+/* ==========================================================================
+   User list styling
+   ========================================================================== */
+#users-list{
+    position: absolute;
+    top: 50px;
+    left: 5vw;
+    width: 200px;
+    font-size: 1.5em;
+}
+
+#users-list li{
+    display: flex;
+    color: white;
+}
+
+#users-list li p{
+    margin-left: 10px;
+}
+
+
+
+
+
+/* ==========================================================================
+   Mobile breakpoint fixes
+   ========================================================================== */
+@media (width < 970px){
+  main{
+    flex-direction: column;
+    padding-top: 300px;
+  }
+  #chat{
+    width: 100%;
+    max-width: 450px;
+    margin: 80px 0 50px 0;
+  }
+}
+
+@media (width < 600px){
+  #trivia{
+    width: 80vw;
+  }
+  #trivia > div > div{
+    flex-direction: column;
+  }
+  #chat{
+    width: 80vw;
+  }
+  #users-list{
+    margin-left: 7vw;
+  }
 }
