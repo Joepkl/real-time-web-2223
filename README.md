@@ -13,7 +13,7 @@ For this project I used the https://opentdb.com/ API. This API includes question
 
 ## Data-flow diagram
 
-<img src="(https://github.com/Joepkl/Portfolio/files/11455490/data-diagram.pdf)" alt="Alt text" title="Optional title">
+![data-diagram.pdf](https://github.com/Joepkl/Portfolio/files/11455490/data-diagram.pdf)
 
 
 
