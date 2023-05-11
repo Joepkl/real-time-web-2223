@@ -13,11 +13,14 @@ For this project I used the https://opentdb.com/ API. This API includes question
 
 ## Data-flow diagram
 
-![data-diagram.pdf](https://github.com/Joepkl/real-time-web-2223/files/11455563/data-diagram.pdf)
+This is an overview of the data which is transferred between client, server and API in the application. 
 
+![data-diagram](https://github.com/Joepkl/real-time-web-2223/assets/74242736/801468cd-c851-4ba7-9a06-c3f90371cadb)
 
+## The application
 
-[data-diagram.pdf](https://github.com/Joepkl/real-time-web-2223/files/11455563/data-diagram.pdf)
+<img width="998" alt="Schermafbeelding 2023-05-11 om 21 12 42" src="https://github.com/Joepkl/real-time-web-2223/assets/74242736/aeb28e87-e705-4333-8c47-2a5f00c8f872">
+
 
 
 <!-- Here are some hints for your projects Readme.md! -->
