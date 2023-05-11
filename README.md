@@ -34,13 +34,15 @@ npm start
 
 To start there is a prompt to fill in your username. When submitted the user will see the following UI. There is an overview of all the users and points. When a user reaches 5 points the game is won. This resets all the points and displays a play again button for users to start another game. Also there is a chat functionality for users to chat with each other. 
 
-<img width="800" alt="The application" src="https://github.com/Joepkl/real-time-web-2223/assets/74242736/c796e8d0-edcd-463d-9a4a-ac6d1eccb824">
+<img width="800" alt="The application" src="https://github.com/Joepkl/real-time-web-2223/assets/74242736/79e8ecd2-731e-49b5-831a-d40b71aa72b3">
+
 
 
 ## Features
 - Fetch questions from API
 - Submit answer
 - Check answer
+- Show first correct user
 - Add points
 - Chat with other users
 - Win the game
