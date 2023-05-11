@@ -24,10 +24,10 @@ This is an overview of the data which is transferred between client, server and 
 Git clone this project
 ```
 ```
-Npm install
+npm install
 ```
 ```
-Npm start
+npm start
 ```
 
 ## The application
