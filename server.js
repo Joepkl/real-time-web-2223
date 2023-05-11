@@ -4,7 +4,7 @@ const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 const path = require('path')
 const port = process.env.PORT || 4242
-// const fetch = require('isomorphic-fetch');
+const fetch = require('node-fetch');
 
 
 let clients = []
