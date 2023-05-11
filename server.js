@@ -4,11 +4,12 @@ const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 const path = require('path')
 const port = process.env.PORT || 4242
+const fetch = require('isomorphic-fetch');
 
 
 let clients = []
 let data
-let answers = 0
+
 
 
 async function fetchTrivia() {
