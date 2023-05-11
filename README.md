@@ -1,12 +1,11 @@
-Ideas:
+Course description
 
-- Guess country name based on the flag image.
-- Trivia questions
-- Guess cocktail ingredients based on given cocktail image.
+During this course you will learn how to build a real-time application. You will learn techniques to setup an open connection between the client and the server. This will enable you to send data in real-time both ways, at the same time.
 
 
-API:
-https://opentdb.com/
+Assignment
+
+I chose to make a Trivia quiz app. This app supports multi user functionalities and is a real time application. Meaning the users are instantly updated on a data change. This makes it possible to play with multiple users against each other. 
 
 
 
