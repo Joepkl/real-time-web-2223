@@ -15,11 +15,12 @@ For this project I used the https://opentdb.com/ API. This API includes question
 
 This is an overview of the data which is transferred between client, server and API in the application. 
 
-![data-diagram](https://github.com/Joepkl/real-time-web-2223/assets/74242736/801468cd-c851-4ba7-9a06-c3f90371cadb)
+<img width="800" alt="Data diagram" src="https://github.com/Joepkl/real-time-web-2223/assets/74242736/00ca10c8-97cc-4615-9d9e-1027076db59e">
+
 
 ## The application
 
-<img width="998" alt="Schermafbeelding 2023-05-11 om 21 12 42" src="https://github.com/Joepkl/real-time-web-2223/assets/74242736/aeb28e87-e705-4333-8c47-2a5f00c8f872">
+<img width="800" alt="The application" src="https://github.com/Joepkl/real-time-web-2223/assets/74242736/aeb28e87-e705-4333-8c47-2a5f00c8f872">
 
 
 
