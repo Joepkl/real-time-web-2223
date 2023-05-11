@@ -32,7 +32,28 @@ npm start
 
 ## The application
 
-<img width="800" alt="The application" src="https://github.com/Joepkl/real-time-web-2223/assets/74242736/aeb28e87-e705-4333-8c47-2a5f00c8f872">
+To start there is a prompt to fill in your username. When submitted the user will see the following UI. There is an overview of all the users and points. When a user reaches 5 points the game is won. This resets all the points and displays a play again button for users to start another game. Also there is a chat functionality for users to chat with each other. 
+
+<img width="800" alt="The application" src="https://github.com/Joepkl/real-time-web-2223/assets/74242736/c796e8d0-edcd-463d-9a4a-ac6d1eccb824">
+
+
+## Features
+- Fetch questions from API
+- Submit answer
+- Check answer
+- Add points
+- Chat with other users
+- Win the game
+- Restart the game
+
+
+## Sources
+
+- OpenTDB API
+https://opentdb.com/
+
+- Socket.io
+https://socket.io/docs/v4/
 
 
 
