@@ -15,6 +15,7 @@ body{
   min-height: 100vh;
   min-width: 100vw;
   background-color: #1D1F2A;
+  color: black;
 }
   
 main{
@@ -103,6 +104,7 @@ p.username{
 #chat form input[type='text'] {
     width: calc(100% - 40px);
     border: 2px solid white;
+    border-radius: 0;
     position: absolute;
     bottom: 0;
     padding: 5px;
@@ -257,5 +259,8 @@ p.username{
   }
   #users-list{
     margin-left: 7vw;
+  }
+  #correct-user{
+    top: 200px;
   }
 }
