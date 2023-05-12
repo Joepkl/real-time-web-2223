@@ -4,7 +4,8 @@ const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 const path = require('path')
 const port = process.env.PORT || 4242
-const fetch = import('node-fetch').then(module => module.default);
+// const fetch = import('node-fetch').then(module => module.default);
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 
 let clients = []
