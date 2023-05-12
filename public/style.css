@@ -113,6 +113,7 @@ p.username{
 #chat form > button {
     cursor: pointer;
     position: absolute;
+    color: black;
     bottom: 0;
     right: 0;
     width: 40px;
@@ -153,6 +154,7 @@ p.username{
 #trivia button{
     background-color: white;
     border: 5px solid white;
+    color: black;
     padding: 20px;
     border-radius: 10px;
     width: 100%;
