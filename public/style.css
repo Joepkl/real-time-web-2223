@@ -188,16 +188,17 @@ p.username{
     cursor: default;
 }
 
-
-
 #correct-user{
     position: absolute;
+    width: 80%;
+    text-align: center;
     top: 50px;
 }
 
 #play-again-button{
     display: none;
     cursor: pointer;
+    color: black;
     background-color: #f4a261;
     border: 2px solid #f4a261;
     margin-top: 30px;
