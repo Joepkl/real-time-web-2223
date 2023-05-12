@@ -1,5 +1,5 @@
 let socket = io()
-let messages = document.querySelector('section ul')
+let messages = document.querySelector('#chat ul')
 let input = document.querySelector('input')
 const connected = false
 
