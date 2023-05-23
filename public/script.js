@@ -131,7 +131,7 @@ function showQuestions(data){
     submitButton.classList.add('clicked')
     submitButton.disabled = true
     if(selectedAnswer.textContent === HTMLDecode(correctAnswer)){
-      myPoints ++
+      myPoints++
       socket.emit('correctAnswer', myUsername, myPoints)
     }
     if(myPoints === 5){

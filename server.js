@@ -49,16 +49,19 @@ io.on('connection', (socket) => {
 
   // Correct answer by client
   socket.on('correctAnswer', (user, points) => {
-    clients.forEach(element => {
-      if(element[0] == user){
-        element[1] = points
-      }
-    })
+    // clients.forEach(element => {
+    //   if(element[0] == user){
+    //     element[1] = points
+    //   }
+    // })
+
+    const correctUser = clients.find(element => element[0] == user)
+    correctUser[1] = points
+
+    console.log(clients)
 
     io.emit('userAdded', clients)
     io.emit('correctAnswer', user)
-
-    console.log(clients)
 
     setTimeout(() => {
       fetchTrivia()
@@ -91,6 +94,8 @@ io.on('connection', (socket) => {
         io.emit('userAdded', clients)
       }
     })
+
+    console.log('client disconnected')
   })
 })
 
