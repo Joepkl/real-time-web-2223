@@ -132,7 +132,9 @@ function showQuestions(data){
     submitButton.disabled = true
     if(selectedAnswer.textContent === HTMLDecode(correctAnswer)){
       myPoints++
+      console.log('correct antwoord')
       socket.emit('correctAnswer', myUsername, myPoints)
+      console.log(myUsername, myPoints)
     }
     if(myPoints === 5){
       console.log(myUsername + ' heeft gewonnen')

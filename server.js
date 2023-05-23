@@ -28,6 +28,7 @@ app.use(express.static(path.resolve('public')))
 // Socket.io
 io.on('connection', (socket) => {
 
+  console.log('user connected')
 
   // Fetch data from API
   fetchTrivia()
@@ -49,11 +50,6 @@ io.on('connection', (socket) => {
 
   // Correct answer by client
   socket.on('correctAnswer', (user, points) => {
-    // clients.forEach(element => {
-    //   if(element[0] == user){
-    //     element[1] = points
-    //   }
-    // })
 
     const correctUser = clients.find(element => element[0] == user)
     correctUser[1] = points
