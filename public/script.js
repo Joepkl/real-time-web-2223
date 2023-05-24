@@ -75,7 +75,6 @@ socket.on('playAgain', () => {
 
 // Wanneer data gefetched is
 socket.on('triviaData', (data) =>{
-  console.log(data)
   showQuestions(data)
 })
 
@@ -88,29 +87,36 @@ socket.on('correctAnswer', (user) => {
   submitButton.classList.add('clicked')
 
   document.querySelector('#correct-user').textContent = `${user} gave the correct answer!`
+})
+
+
+
+socket.on('allClientsAnswered', () => {
+  document.querySelector('#correct-user').textContent = 'Nobody got the correct answer'
 
   setTimeout(() => {
     document.querySelector('#correct-user').textContent = ''
-    submitButton.disabled = false
-    if(selectedAnswer){
-      selectedAnswer.classList.remove('selected')
-    }
-    if(submitButton){
-      submitButton.classList.remove('clicked')
-    }
   },3000)
+
+
+  let selectedAnswer =  document.querySelector('button.selected') 
+  if(selectedAnswer){
+    selectedAnswer.classList.remove('selected')
+  }
 })
+
 
 
 const _question = document.querySelector('#question')
 const _options = document.querySelectorAll('.quiz-options')
 const submitButton = document.querySelector('#submit-button')
+let correctAnswer
 
 
 
 // Display questions and answers
 function showQuestions(data){
-  let correctAnswer = data.correct_answer
+  correctAnswer = data.correct_answer
   let incorrectAnswers = data.incorrect_answers
   let optionsList = incorrectAnswers
   optionsList.splice(Math.floor(Math.random() * (incorrectAnswers.length + 1)), 0, correctAnswer)
@@ -123,26 +129,35 @@ function showQuestions(data){
 
   console.log('Correct is:' + correctAnswer)
 
+  
+  let selectedAnswer =  document.querySelector('button.selected') 
+  submitButton.disabled = false
+  document.querySelector('#correct-user').textContent = ''
+  if(selectedAnswer){
+    selectedAnswer.classList.remove('selected')
+  }
+  if(submitButton){
+    submitButton.classList.remove('clicked')
+  }
+}
 
-  // Checking correct answer
-  submitButton.addEventListener('click', () =>{
+
+// Checking correct answer
+submitButton.addEventListener('click', () =>{
   let selectedAnswer =  document.querySelector('button.selected') 
   if(selectedAnswer){
+    socket.emit('answerGiven')
     submitButton.classList.add('clicked')
     submitButton.disabled = true
     if(selectedAnswer.textContent === HTMLDecode(correctAnswer)){
       myPoints++
-      console.log('correct antwoord')
       socket.emit('correctAnswer', myUsername, myPoints)
-      console.log(myUsername, myPoints)
     }
     if(myPoints === 5){
-      console.log(myUsername + ' heeft gewonnen')
       socket.emit('userWon', myUsername)
     }
   }
 })
-}
 
 
 // Selecting correct answer

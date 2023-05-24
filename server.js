@@ -9,6 +9,7 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 
 let clients = []
 let data
+let amountAnswers = 0
 
  
 
@@ -46,15 +47,30 @@ io.on('connection', (socket) => {
   socket.on('message', (message, sender) => {
     io.emit('message', message, sender)
   })
+
+
+  // Check if all clients answered
+  socket.on('answerGiven', () => {
+
+    amountAnswers = amountAnswers + 1
+    console.log(amountAnswers)
+    if(amountAnswers === clients.length){
+      amountAnswers = 0
+      io.emit('allClientsAnswered')
+      setTimeout(() => {
+        fetchTrivia()
+        io.emit('triviaData', data)
+      },3000)
+    }
+  })
   
 
   // Correct answer by client
   socket.on('correctAnswer', (user, points) => {
+    amountAnswers = 0
 
     const correctUser = clients.find(element => element[0] == user)
     correctUser[1] = points
-
-    console.log(clients)
 
     io.emit('userAdded', clients)
     io.emit('correctAnswer', user)
