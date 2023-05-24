@@ -41,7 +41,8 @@ To start there is a prompt to fill in your username. When submitted the user wil
 ## Features
 - Fetch questions from API
 - Submit answer
-- Check answer
+- Check if answer is correct
+- Check if all users answered
 - Show first correct user
 - Add points
 - Chat with other users
