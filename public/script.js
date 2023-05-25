@@ -142,6 +142,7 @@ function showQuestions(data){
 }
 
 
+
 // Checking correct answer
 submitButton.addEventListener('click', () =>{
   let selectedAnswer =  document.querySelector('button.selected') 
